@@ -1,0 +1,24 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment files
+.env
+
+# Large or generated local artifacts
+*.log
+
+# Keep Python and notebook source files tracked; ignore non-code project assets
+*.pdf
+*.json
+*.docx
