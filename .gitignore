@@ -17,6 +17,7 @@ env/
 
 # Large or generated local artifacts
 *.log
+*.csv
 
 # Keep Python and notebook source files tracked; ignore non-code project assets
 *.pdf
