@@ -1,0 +1,41 @@
+Team-season xT matrix build log
+start_time: 2026-07-08 15:28:01.538725
+end_time: 2026-07-08 15:37:29.989452
+matches_scanned_training_pass: 3961
+matches_scanned_matrix_pass: 3961
+event_files_found_training_pass: 3961
+event_files_found_matrix_pass: 3961
+missing_event_files_training_pass: 0
+missing_event_files_matrix_pass: 0
+parsing_errors_training_pass: 0
+parsing_errors_matrix_pass: 0
+open_play_passes_removed_training_pass: 414077
+open_play_passes_removed_matrix_pass: 414077
+shots_used: 101221
+goals_used: 11324
+successful_moves_used_training_pass: 5680336
+successful_moves_used_matrix_pass: 5680336
+team_season_rows_produced: 922
+
+Output files:
+- outputs\team_season_action_count_start_wide.csv
+- outputs\team_season_xt_clustering_features.csv
+- outputs\team_season_xt_created_start_carry_positive_distribution_wide.csv
+- outputs\team_season_xt_created_start_net_raw_wide.csv
+- outputs\team_season_xt_created_start_pass_positive_distribution_wide.csv
+- outputs\team_season_xt_created_start_positive_distribution_long.csv
+- outputs\team_season_xt_created_start_positive_distribution_wide.csv
+- outputs\team_season_xt_created_start_positive_raw_long.csv
+- outputs\team_season_xt_created_start_positive_raw_wide.csv
+- outputs\team_season_xt_received_end_positive_distribution_wide.csv
+- outputs\team_season_xt_received_end_positive_raw_wide.csv
+- outputs\team_season_xt_spatial_summary.csv
+- outputs\global_xt_grid_12x16.csv
+- outputs\global_xt_zone_values.csv
+- outputs\global_xt_heatmap.png
+- outputs\sample_team_season_xt_surfaces.png
+- outputs\team_xt_created_surface_distribution.png
+- outputs\team_xt_created_surface_distribution_smoothed.png
+- outputs\team_xt_created_surface_raw.png
+- outputs\team_xt_received_surface_distribution.png
+- outputs\top_team_season_xt_surfaces.png
