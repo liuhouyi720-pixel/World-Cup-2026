@@ -102,10 +102,7 @@ def load_match_metadata(data_root: str | Path = DATA_ROOT) -> dict[str, dict[str
     root = Path(data_root)
     metadata: dict[str, dict[str, Any]] = {}
 
-    for path in sorted(root.rglob("*.json")):
-        if "matches" not in {part.lower() for part in path.parts}:
-            continue
-
+    for path in _iter_match_json_paths(root):
         data = load_json(path)
         if not isinstance(data, list):
             continue
@@ -373,6 +370,43 @@ def _looks_like_event_json_path(path: Path) -> bool:
     return '"Starting XI"' in sample and '"tactics"' in sample and '"team"' in sample
 
 
+def _find_named_dirs(root: Path, dirname: str) -> list[Path]:
+    """Find local data directories by name, skipping hidden/tooling folders."""
+    ignored = {".git", ".vscode", ".codex", ".agents", "__pycache__"}
+    matches: list[Path] = []
+
+    for path in root.rglob(dirname):
+        if not path.is_dir():
+            continue
+        if any(part.lower() in ignored for part in path.relative_to(root).parts):
+            continue
+        matches.append(path)
+
+    return sorted(matches)
+
+
+def _iter_match_json_paths(root: Path) -> list[Path]:
+    """Return local match-metadata JSON paths, preferring StatsBomb matches dirs."""
+    match_dirs = _find_named_dirs(root, "matches")
+    if match_dirs:
+        return sorted(path for match_dir in match_dirs for path in match_dir.rglob("*.json"))
+
+    return sorted(
+        path
+        for path in root.rglob("*.json")
+        if "matches" in {part.lower() for part in path.relative_to(root).parts}
+    )
+
+
+def _iter_event_json_paths(root: Path) -> list[Path]:
+    """Return event JSON candidates, preferring directories named events."""
+    event_dirs = _find_named_dirs(root, "events")
+    if event_dirs:
+        return sorted(path for event_dir in event_dirs for path in event_dir.rglob("*.json"))
+
+    return sorted(path for path in root.rglob("*.json") if _looks_like_event_json_path(path))
+
+
 def build_all_match_rows(data_root: str | Path = DATA_ROOT) -> pd.DataFrame:
     """Scan recursively for event JSON files and build all matchup rows."""
     root = Path(data_root)
@@ -381,10 +415,7 @@ def build_all_match_rows(data_root: str | Path = DATA_ROOT) -> pd.DataFrame:
     candidate_count = 0
     skipped_count = 0
 
-    for path in sorted(root.rglob("*.json")):
-        if not _looks_like_event_json_path(path):
-            continue
-
+    for path in _iter_event_json_paths(root):
         candidate_count += 1
         match_rows, reason = build_match_rows_from_event_file(path, match_metadata)
         if match_rows:
