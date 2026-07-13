@@ -1,0 +1,16 @@
+Strategy report: 433 vs 442
+
+Historical matchup performance in this dataset is descriptive, not causal.
+Our formation: 433
+Opponent formation: 442
+Historical games: 0
+Win rate: n/a
+Points per game: n/a
+Goal difference per game: n/a
+Interpretation: unknown due to insufficient data
+
+Simple tactical suggestions:
+- Use the three-player midfield to create central overloads.
+- Be careful against two-striker pressure on center backs.
+- Wingers should pin the opponent fullbacks.
+- The defensive midfielder must protect second balls and counterattacks.
