@@ -1,1 +1,1 @@
-PAGE_TITLE = "球队风格对比"
+PAGE_TITLE = "Team Style Comparison"

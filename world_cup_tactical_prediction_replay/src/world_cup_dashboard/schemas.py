@@ -14,7 +14,7 @@ class XTStyleProfile:
     vector: list[float] | None = None
     spatial: dict[str, float] = field(default_factory=dict)
     representatives: list[str] = field(default_factory=list)
-    limitation: str = "没有兼容的历史 xT 档案。"
+    limitation: str = "No compatible historical xT profile is available."
 
     @property
     def feature_vector(self) -> list[float] | None:
@@ -60,4 +60,3 @@ class MatchPrediction:
         return result
 
     to_dict = as_record
-

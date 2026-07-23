@@ -41,7 +41,7 @@ def full_simulation(weights=None,experiment="C",use_form=True):
         for i in range(0,len(field),2):
             m={"match_id":f"sim_{rnd}_{i//2+1}","kickoff":f"simulation-{rnd}","stage":name,"group":"","home_team":field[i],"away_team":field[i+1]};p=e.predict(m,form,"full_simulation",use_form);w=advancing_team(p);records.append(p.as_record()|{"simulated_winner":w});winners.append(w)
         field=winners
-    out={"mode":"full_simulation","bracket_note":"模型从小组预测结果产生晋级队，随后采用固定种子顺序构造独立淘汰赛，不读取真实淘汰赛参赛队。","group_tables":tables,"best_third_place":best,"champion":field[0],"predictions":records};(SIMULATION/"full_tournament_simulation.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8");return out
+    out={"mode":"full_simulation","bracket_note":"Qualifiers come from model-predicted group tables, followed by a fixed-seed independent knockout bracket. Actual knockout participants are not used.","group_tables":tables,"best_third_place":best,"champion":field[0],"predictions":records};(SIMULATION/"full_tournament_simulation.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8");return out
 
 def main():
     p=argparse.ArgumentParser();p.add_argument("--mode",choices=["backtest","full_simulation"],required=True);a=p.parse_args();print(f"Created {len(backtest())} chronological predictions" if a.mode=="backtest" else f"Simulated champion: {full_simulation()['champion']}")

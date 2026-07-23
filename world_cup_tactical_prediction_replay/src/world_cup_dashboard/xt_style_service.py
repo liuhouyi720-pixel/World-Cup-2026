@@ -13,16 +13,16 @@ FILES = {
 def cluster_label(row: pd.Series) -> str:
     labels = []
     if row.get("attacking_third_share", 0) >= 0.70:
-        labels.append("威胁更集中在进攻三区")
+        labels.append("Threat concentrated in the attacking third")
     elif row.get("middle_third_share", 0) >= 0.28:
-        labels.append("威胁更多经过中场区域")
+        labels.append("Threat more concentrated through midfield")
     if row.get("left_side_share", 0) > row.get("right_side_share", 0) + 0.06:
-        labels.append("左路占比偏高")
+        labels.append("Higher left-side share")
     elif row.get("right_side_share", 0) > row.get("left_side_share", 0) + 0.06:
-        labels.append("右路占比偏高")
+        labels.append("Higher right-side share")
     else:
-        labels.append("左右分布相对均衡")
-    labels.append("带球创造占比偏高" if row.get("carry_xT_share", 0) > 0.38 else "传球创造占比偏高")
+        labels.append("Relatively balanced left/right distribution")
+    labels.append("Higher carry-created share" if row.get("carry_xT_share", 0) > 0.38 else "Higher pass-created share")
     return "；".join(labels)
 
 class XTStyleService:
@@ -81,7 +81,7 @@ class XTStyleService:
                 vector=row[zone_columns].fillna(0).astype(float).tolist(),
                 spatial=spatial,
                 representatives=representatives,
-                limitation="历史代理档案，不是 2026 年赛事级事件数据。",
+                limitation="Historical proxy profile, not 2026 event-level data.",
             )
             self.profiles[canonical] = profile
             return profile
@@ -96,4 +96,3 @@ class XTStyleService:
         vector_a, vector_b = np.array(profile_a.vector), np.array(profile_b.vector)
         denominator = np.linalg.norm(vector_a) * np.linalg.norm(vector_b)
         return float(vector_a @ vector_b / denominator) if denominator else None
-

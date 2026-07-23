@@ -1,2 +1,1 @@
-PAGE_TITLE = "模型原理与局限"
-
+PAGE_TITLE = "Methodology & Limitations"

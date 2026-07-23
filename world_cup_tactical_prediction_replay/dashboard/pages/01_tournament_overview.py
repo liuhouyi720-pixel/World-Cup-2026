@@ -1,1 +1,1 @@
-PAGE_TITLE = "赛事总览"
+PAGE_TITLE = "Tournament Overview"
