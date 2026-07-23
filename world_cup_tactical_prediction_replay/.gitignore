@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+<<<<<<< ours
+*.pyc
+=======
+outputs/world_cup_dashboard/cache/
+>>>>>>> theirs
+
