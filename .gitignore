@@ -23,3 +23,6 @@ env/
 *.pdf
 *.json
 *.docx
+
+# Keep the curated project report in the documentation catalog
+!docs/*.docx
